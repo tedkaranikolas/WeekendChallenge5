@@ -18,6 +18,8 @@ myApp.controller( 'recordCreate', ['$scope', '$http', function( $scope, $http ){
       method: 'POST',
       url: '/postAnimal',
       data: objectOut
+    }).then(function(){
+      $scope.getRecords();
     });
     //clears input values
     $scope.petNameIn = '';
@@ -27,7 +29,7 @@ myApp.controller( 'recordCreate', ['$scope', '$http', function( $scope, $http ){
   };//end addRecord
 
   //create retrievel function to display data
-  var populatePage = $scope.getRecords = function(){
+  $scope.getRecords = function(){
     $http({
       method: 'GET',
       url: '/retrieveData',
@@ -36,5 +38,5 @@ myApp.controller( 'recordCreate', ['$scope', '$http', function( $scope, $http ){
       console.log(response);
     });
   };//end getRecords
-  populatePage();
+$scope.getRecords();
 }]);//end myapp controller recordCreate
