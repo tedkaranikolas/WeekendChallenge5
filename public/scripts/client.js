@@ -3,6 +3,7 @@ var myApp=angular.module( 'myApp', []);
 console.log('in client.js');
 
 myApp.controller( 'recordCreate', ['$scope', '$http', function( $scope, $http ){
+  $scope.allTheRecords = [];
 
   $scope.addRecord = function(){
     var objectOut = {
@@ -18,11 +19,22 @@ myApp.controller( 'recordCreate', ['$scope', '$http', function( $scope, $http ){
       url: '/postAnimal',
       data: objectOut
     });
+    //clears input values
     $scope.petNameIn = '';
     $scope.animalTypeIn = '';
     $scope.ageIn = '';
     $scope.urlIn = '';
-  };//end animalRecord
+  };//end addRecord
 
-
-}]);//end my app controller
+  //create retrievel function to display data
+  var populatePage = $scope.getRecords = function(){
+    $http({
+      method: 'GET',
+      url: '/retrieveData',
+    }).then(function(response){
+      $scope.allTheRecords = response.data;
+      console.log(response);
+    });
+  };//end getRecords
+  populatePage();
+}]);//end myapp controller recordCreate

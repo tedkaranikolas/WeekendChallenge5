@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
   pet_name: String,
   animal_type: String,
-  age: Number,
-  animal_url: Date
+  age: String,
+  animal_url: String
 });
 
 var User = mongoose.model('users', userSchema);

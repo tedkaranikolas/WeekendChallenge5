@@ -48,7 +48,7 @@ app.post('/postAnimal', function(req, res){
 });//end POST
 
 //create GET to retrieve data/animals
-app.get('retrieveData', function(req, res){
+app.get('/retrieveData', function(req, res){
   console.log('in retreive data');
   User.find()
   .then(function(data){
